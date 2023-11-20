@@ -16,11 +16,16 @@ public class ComputablefutureTest {
 
 	@Test
 	public void appHasAGreeting() throws InterruptedException, ExecutionException {
-		CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
+		LongRunJob longRunJob1 = new LongRunJob("longRunJob1");
+		CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> longRunJob1.run());
 		logger.info(String.format("future1=%s", future1.get()));
-		CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Beautiful");
+
+		LongRunJob longRunJob2 = new LongRunJob("longRunJob2");
+		CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> longRunJob2.run());
 		logger.info(String.format("future2=%s", future2.get()));
-		CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "World");
+
+		LongRunJob longRunJob3 = new LongRunJob("longRunJob3");
+		CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> longRunJob3.run());
 		logger.info(String.format("future3=%s", future3.get()));
 
 		CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(future1, future2, future3);
