@@ -15,7 +15,7 @@ public class ComputablefutureTest {
 	private static Logger logger = Logger.getLogger(ComputablefutureTest.class.getName());
 
 	@Test
-	public void appHasAGreeting() throws InterruptedException, ExecutionException {
+	public void completableFutureTest() throws InterruptedException, ExecutionException {
 		LongRunJob longRunJob1 = new LongRunJob("longRunJob1");
 		CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> longRunJob1.run());
 		logger.info(String.format("future1=%s", future1.get()));
